@@ -6,6 +6,5 @@ class Customer(models.Model):
     
     class Meta:
         indexes = [
-            models.Index(fields=['last_name', 'first_name']),
             models.Index(fields=['first_name'], name='first_name_idx'),
         ]
