@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'indexes',
     'tdds',
-    'django_extensions'
+    'django_extensions',
+    'psycopg2'
 ]
 
 MIDDLEWARE = [
@@ -79,8 +80,12 @@ WSGI_APPLICATION = 'blogs.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tdds',
+        'DB_USER': 'kylee',
+        'DB_PASSWORD': '1234',
+        'DB_HOST':'127.0.0.1',
+        'DB_PORT':''
     }
 }
 
@@ -182,3 +187,11 @@ CORS_ALLOW_HEADERS = (
 DJANGO_ROOT = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(DJANGO_ROOT)
 sys.path.append(os.path.normpath(os.path.join(PROJECT_ROOT, 'apps')))
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.ScrpytPasswordHasher'
+]
