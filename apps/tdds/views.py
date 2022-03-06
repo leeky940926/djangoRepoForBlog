@@ -47,5 +47,16 @@ class SignUpView(View):
             return JsonResponse({'meesage':'KEY_ERROR'}, status=500)
         
         else:
-            return JsonResponse({'message':'CREATE_ROLE'}, status=201)
+            return JsonResponse({'message':'CREATE_USER'}, status=201)
+    
+
+class UserListView(View):
+    def get(self, request, *args, **kwargs):
+        users = User.objects.select_related('role').all()
+        user_list = [
+            {"id":user.id,
+             "role":user.role.name,
+             "nickname":user.nickname}
+            for user in users]
+        return JsonResponse({'user_list':user_list}, status=200)
 
