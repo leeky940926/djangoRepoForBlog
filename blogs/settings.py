@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     'indexes',
     'tdds',
     'django_extensions',
-    'psycopg2'
+    'psycopg2',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
