@@ -17,5 +17,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('indexes', include('indexes.urls')),
-    path('tdds', include('tdds.urls'))
+    path('tdds', include('tdds.urls')),
+    path('orms', include('orms.urls'))
 ]

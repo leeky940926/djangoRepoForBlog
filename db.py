@@ -1,15 +1,10 @@
 import os
 import django
-from faker import Faker
 from django.db import transaction
+from apps.orms.models import Cloth
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blogs.settings')
 django.setup()
 
-from indexes.models import Customer
-
-f = Faker()
-
 with transaction.atomic():
-    customer_list = [Customer(first_name=f.name(), last_name=f.name) for _ in range(100000)]
-    Customer.objects.bulk_create(customer_list)
+   Cloth.objects.create(name="갈색 가디건", price=50000)
