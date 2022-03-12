@@ -3,32 +3,32 @@ import json
 from django.views import View
 from django.http import JsonResponse
 from django.db.models import F
+from orms.models import Posting
 
 
 class RaceConditionView(View):
     def put(self, request, *args, **kwargs):
-        return 1
-        # try:
-        #     cloth = Cloth.objects.get(id=kwargs["cloth_id"])
+        try:
+            posting = Posting.objects.get(id=kwargs["posting_id"])
+            posting.view = posting.view + 1
+            posting.save()
         
-        #     data = json.loads(self.request.body)
-        #     name = data.get("name", None)
-        #     price = data.get("price", None)
+        except Posting.DoesNotExist:
+            return JsonResponse({'message':'POSTING_DOES_NOT_EXIST'}, status=400)
             
-        #     if name:
-        #         cloth.name = name
-            
-        #     cloth.price = F('price')                
-            
-        #     cloth.save()
-        
-        # except model.DoesNotExist:
-        #     return JsonResponse({'message':'CLOTH_DOES_NOT_EXIST'}, status=400)
-            
-        # else:
-        #     return JsonResponse({'message':'update success'}, status=201)
+        else:
+            return JsonResponse({'message':'update success'}, status=201)
 
 
 class NonRaceConditionView(View):
     def put(self, request, *args, **kwargs):
-        return JsonResponse({'message':'update success'}, status=201)
+        try:
+            posting = Posting.objects.get(id=kwargs["posting_id"])
+            posting.view = F('view') + 1
+            posting.save()
+        
+        except Posting.DoesNotExist:
+            return JsonResponse({'message':'POSTING_DOES_NOT_EXIST'}, status=400)
+            
+        else:
+            return JsonResponse({'message':'update success'}, status=201)
