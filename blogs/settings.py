@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'indexes',
     'tdds',
+    'orms',
     'django_extensions',
     'psycopg2',
     'corsheaders'
