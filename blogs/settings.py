@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'orms',
     'django_extensions',
     'psycopg2',
-    'corsheaders'
+    'corsheaders',
+    'utils'
 ]
 
 MIDDLEWARE = [
