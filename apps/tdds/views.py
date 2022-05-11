@@ -60,3 +60,16 @@ class UserListView(View):
             for user in users]
         return JsonResponse({'user_list':user_list}, status=200)
 
+
+class UpdatedAtView(View):
+    def put(self, request, *args, **kwargs):
+        #1 = updated_at O
+        user1 = User.objects.get(id=1)
+        
+        user1.nickname="test1"
+        user1.save()
+        
+        #2 = updated_at X
+        User.objects.filter(id=1).update(nickname='test2')
+        
+        
